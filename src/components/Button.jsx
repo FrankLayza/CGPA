@@ -3,7 +3,6 @@ const Button = ({
   children,
   onClick,
   type = "button",
-  size = "btn-md",
   ...props
 }) => {
   return (

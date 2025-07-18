@@ -37,8 +37,9 @@
 }
 
 .neo-button:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--color-neo-black);
+    transform: translate(2px, 2px);
+    /* box-shadow: 6px 6px 0px var(--color-neo-black); */
+    box-shadow: none;
 }
 
 .neo-button:active {
