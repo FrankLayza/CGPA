@@ -1,15 +1,29 @@
 import { useState, createContext, useContext } from "react";
 
-const AppContext = createContext()
+const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-    const [rows, setRow] = useState([
-      { id: Date.now(), course: "", grade: "", credit_unit: "" },
-    ]);
+  const [total, setTotal] = useState(0);
+  const [semester, setSemester] = useState([
+    {
+      id: Date.now() + Math.random(),
+      name: `Semester 1`,
+      rows: [
+        {
+          id: Date.now() + Math.random(),
+          course: "",
+          grade: "",
+          credit_unit: "",
+        },
+      ],
+      gpa: null,
+    },
+  ]);
+  return (
+    <AppContext.Provider value={{ total, setTotal, semester, setSemester }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
 
-    return (
-        <AppContext.Provider value={{rows, setRow}}>{children}</AppContext.Provider>
-    )
-}
-
-export const useAppContext = () => useContext(AppContext) 
+export const useAppContext = () => useContext(AppContext);
