@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
-  const [semester, setSemester] = useState([
+  const [semesters, setSemester] = useState([
     {
       id: Date.now() + Math.random(),
       name: `Semester 1`,
@@ -20,7 +20,7 @@ export const AppContextProvider = ({ children }) => {
     },
   ]);
   return (
-    <AppContext.Provider value={{ total, setTotal, semester, setSemester }}>
+    <AppContext.Provider value={{ total, setTotal, semesters, setSemester }}>
       {children}
     </AppContext.Provider>
   );

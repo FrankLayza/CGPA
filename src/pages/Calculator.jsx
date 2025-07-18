@@ -1,11 +1,11 @@
-
+import React from "react";
 import Button from "../components/Button";
 import { useAppContext } from "../contexts/AppContext";
 import { useCallback } from "react";
 import SemesterCard from "../components/SemesterCard";
 
 const Calculator = () => {
-  const { semester, setSemester, setTotal } = useAppContext();
+  const { semesters, setSemester, setTotal } = useAppContext();
   const addNewRow = useCallback(
     (semesterId) => {
       setSemester((prev) =>
@@ -133,11 +133,11 @@ const Calculator = () => {
     F: 0,
   };
 
-  const calculateTotal = (semesterId) => {
+  const calculateGPA = (semesterId) => {
     let totalPoints = 0;
     let totalUnits = 0;
 
-    const currentSemester = semester.find((sem) => sem.id === semesterId);
+    const currentSemester = semesters.find((sem) => sem.id === semesterId);
 
     currentSemester.rows.forEach((row) => {
       if (row.grade && row.credit_unit) {
@@ -164,13 +164,28 @@ const Calculator = () => {
     }
   };
 
+  const calculateCGPA = () => {
+    let totalGPA = 0;
+    let count = 0;
+
+    semesters.forEach((semester) => {
+      if (semester.gpa) {
+        let eachSemesterGPA = parseFloat(semester.gpa);
+        totalGPA += eachSemesterGPA;
+        count++;
+      }
+      if(count === 0) return 0;
+      const cgpa = (totalGPA / count).toFixed(2)
+      return cgpa;
+    });
+  };
+
   return (
     <>
       <>
-        {semester.map((sem) => (
-          <>
+        {semesters.map((sem) => (
+          <React.Fragment key={sem.id}>
             <SemesterCard
-              key={sem.id}
               sem={sem}
               onAddRow={addNewRow}
               onInputChange={handleInputChange}
@@ -180,17 +195,17 @@ const Calculator = () => {
 
             <div className="flex justify-center mt-5 gap-4">
               <Button
-                onClick={() => calculateTotal(sem.id)}
+                onClick={() => calculateGPA(sem.id)}
                 classname="neo-button py-1 px-3 md:px-3 md:py-2 cursor-pointer"
               >
                 Calculate
               </Button>
             </div>
-          </>
+          </React.Fragment>
         ))}
 
         {/* This goes outside the loop */}
-        {semester.at(-1).rows.length >= 2 && (
+        {semesters.at(-1).rows.length >= 2 && (
           <div className="flex justify-center mt-5 gap-4">
             <Button
               onClick={newSemester}
