@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
 @plugin "daisyui" {
@@ -6,7 +6,7 @@
 }
 
 @theme inline {
-  --font-rubik: "Rubik", sans-serif;
+  --font-rubik: "DM Sans", sans-serif;
   --color-light-green: #f2f7f7;
   --color-dark-purple: #03045e;
   --color-neo-yellow: #ffd93d;
@@ -19,12 +19,29 @@
 
 /* Neobrutalism styles */
 .neo-card {
-  background: var(--color-neo-white);
+  /* background: var(--color-neo-white); */
   border: 4px solid var(--color-neo-black);
   box-shadow: 8px 8px 0px var(--color-neo-black);
-  border-radius: 0;
+  border-radius: 5;
 }
 
+.neo-form {
+  background: var(--color-neo-white);
+  border: 2px solid var(--color-neo-black);
+  box-shadow: 5px 5px 0px var(--color-neo-black);
+  border-radius: 5;
+}
+.neo-form-button {
+  border: 2px solid var(--color-neo-black);
+  box-shadow: 4px 4px 0px var(--color-neo-black);
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+.neo-form-button:hover {
+  transform: translate(2px, 2px);
+  /* box-shadow: 6px 6px 0px var(--color-neo-black); */
+  box-shadow: none;
+}
 .neo-button {
   /* background: var(--color-neo-yellow); */
   border: 3px solid var(--color-neo-black);
