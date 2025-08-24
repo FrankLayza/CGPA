@@ -1,63 +1,50 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDropzone } from "react-dropzone/.";
 
 const SignUp = () => {
     const navigate = useNavigate()
+    const {register, handleSubmit} = useForm();
+    const [data, setData] = useState('')
+    const [preview, setPreview] = useState(null)
+
+    const onDrop = (acceptedImage) => {
+      const file = acceptedImage[0]
+      if(file){
+        setPreview(URL.createObjectURL(file))
+      }
+    }
+
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({
+      onDrop,
+      accept: {'image/*': []},
+      multiple: false
+    })
+
   return (
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-neo-blue">
-        <div className="py-5 px-8 rounded-md neo-form">
-          <form action="">
-            <div className="my-4">
-            <p className="font-semibold text-xl leading-none">Sign up</p>
-            <p className="text-sm font-base">
-              Enter your details to create an account
-            </p>
+        <form className="w-full max-w-md neo-form flex flex-col px-6 py-4" onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+          <h2 className="text-4xl font-bold mt-3 mb-4">Sign Up 👋</h2>
+            <p className="text-base font-bold">Upload your photo</p>
+          <div className="border-2 size-26 w-full">
+
+          </div>
+          <div className="my-2">
+            <label htmlFor="userName" className="text-lg font-bold">Username</label> <br />
+            <input id="userName" className="border-2 rounded px-2 py-1 w-full bg-neo-white" {...register("userName", {required: true})} placeholder="Username" />
           </div>
 
-          <label htmlFor="firstName" className="font-semibold">
-            First Name
-          </label>
-          <br />
-          <input
-            className="bg-neo-white border-2 border-neo-black w-full px-2 py-1 rounded"
-            type="text"
-            id="firstName"
-            placeholder="John"
-          />
-          <br />
-          <label htmlFor="lastName" className="font-semibold">
-            Last Name
-          </label>
-          <br />
-          <input
-            className="bg-neo-white border-2 border-neo-black w-full px-2 py-1 rounded"
-            type="text"
-            id="lastName"
-            placeholder="Doe"
-          />
-          <br />
-          <div className="my-5">
-            <div className="flex items-center justify-between">
-                <label htmlFor="" className="font-semibold">
-                  Password
-                </label>
-                <Link className="text-xs">Forgot your password?</Link>
-            </div>
-            <input
-              className="bg-neo-white border-2 border-neo-black w-full px-2 py-1 rounded"
-              type="password"
-            />
-          </div>
-          <div className="flex flex-col mb-4 gap-4 text-sm font-semibold">
-            <button type="button" className="bg-neo-blue cursor-pointer neo-form-button py-1 rounded" onClick={() => navigate('/home')}>Login</button>
-          
-          </div>
-          </form>
-          
-        </div>
+          <label className="text-lg font-bold" htmlFor="regNumber">Reg. Number</label>
+          <input id="regNumber" className="border-2 rounded px-2 py-1 w-full bg-neo-white" type="text" {...register("regNo", {required: true})} placeholder="Reg.Number" />
+
+          <button onClick={() => navigate('/home')} className="neo-button my-3 p-2 cursor-pointer bg-neo-yellow">Sign Up</button>
+        </form>
       </div>
     </>
   );
 };
 
 export default SignUp;
+ 
