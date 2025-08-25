@@ -2,7 +2,7 @@ import SemesterCharts from "../components/Chart";
 import { useAppContext } from "../contexts/AppContext";
 import { Link } from "react-router-dom";
 const Dashboard = () => {
-  const { preview } = useAppContext();
+  const { preview, calculateCGPA } = useAppContext();
   return (
     <>
       <div className="w-full min-h-screen p-8">
@@ -23,7 +23,7 @@ const Dashboard = () => {
               </div>
               <div className="flex justify-between items-center mt-5">
                 <div>
-                  <p className="text-7xl font-extrabold">3.85</p>
+                  <p className="text-7xl font-extrabold">{calculateCGPA()}</p>
                   <p className="text-3xl font-bold">/5.0</p>
                   <p className="text-xl font-bold">33 TOTAL COURSES</p>
                 </div>

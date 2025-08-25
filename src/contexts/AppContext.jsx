@@ -23,8 +23,26 @@ export const AppContextProvider = ({ children }) => {
       gpa: null,
     },
   ]);
+   const calculateCGPA = () => {
+  let totalGPA = 0;
+  let count = 0;
+
+  semesters.forEach((semester) => {
+    if (semester.gpa) {
+      let eachSemesterGPA = parseFloat(semester.gpa);
+      totalGPA += eachSemesterGPA;
+      count++;
+    }
+  });
+
+  if (count === 0) return 0;
+
+  const cgpa = (totalGPA / count).toFixed(2);
+  return cgpa;
+};
+
   return (
-    <AppContext.Provider value={{ total, setTotal, semesters, setSemester, preview, setPreview }}>
+    <AppContext.Provider value={{ total, setTotal, semesters, setSemester, preview, setPreview, calculateCGPA }}>
       {children}
     </AppContext.Provider>
   );
