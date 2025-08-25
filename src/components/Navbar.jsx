@@ -1,4 +1,5 @@
 import { useAppContext } from "../contexts/AppContext";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const { preview } = useAppContext();
   return (
@@ -6,7 +7,9 @@ const Navbar = () => {
       <div className="flex justify-between items-center gap-3">
         {/* Add your navbar content here */}
         {/* <div className="rounded-full size-9 border-2 cursor-pointer"></div> */}
-        <h2 className="text-3xl font-bold">GPAlytics</h2>
+        <Link to={"/home"} className="text-3xl font-bold">
+          GPAlytics
+        </Link>
         <div className="avatar dropdown dropdown-bottom dropdown-hover size-9 cursor-pointer">
           <div
             tabIndex={0}
@@ -22,7 +25,7 @@ const Navbar = () => {
               <a>Profile</a>
             </li>
             <li>
-              <a>Logout</a>
+              <Link to={'/'}>Logout</Link>
             </li>
           </ul>
         </div>

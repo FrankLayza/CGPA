@@ -164,21 +164,45 @@ const Calculator = () => {
     }
   };
 
-  const calculateCGPA = () => {
-    let totalGPA = 0;
-    let count = 0;
+  // const calculateCGPA = () => {
+  //   let totalGPA = 0;
+  //   let count = 0;
 
-    semesters.forEach((semester) => {
-      if (semester.gpa) {
-        let eachSemesterGPA = parseFloat(semester.gpa);
-        totalGPA += eachSemesterGPA;
-        count++;
-      }
-      if(count === 0) return 0;
-      const cgpa = (totalGPA / count).toFixed(2)
-      return cgpa;
-    });
-  };
+  //   semesters.forEach((semester) => {
+  //     if (semester.gpa) {
+  //       let eachSemesterGPA = parseFloat(semester.gpa);
+  //       totalGPA += eachSemesterGPA;
+  //       count++;
+  //     }
+  //     if(count === 0) return 0;
+  //     const cgpa = (totalGPA / count).toFixed(2)
+  //     return cgpa;
+  //   });
+  // };
+  // console.log(calculateCGPA())
+
+  const calculateCGPA = () => {
+  let totalGPA = 0;
+  let count = 0;
+
+  semesters.forEach((semester) => {
+    if (semester.gpa) {
+      let eachSemesterGPA = parseFloat(semester.gpa);
+      totalGPA += eachSemesterGPA;
+      count++;
+    }
+  });
+
+  if (count === 0) return 0;
+
+  const cgpa = (totalGPA / count).toFixed(2);
+  return cgpa;
+};
+
+
+// console.log(calculateCGPA());
+
+
 
   return (
     <>
