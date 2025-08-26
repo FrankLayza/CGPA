@@ -41,8 +41,14 @@ export const AppContextProvider = ({ children }) => {
   return cgpa;
 };
 
+const getTotalCourses = (semesters) => {
+  return semesters.reduce((total, semester) => {
+    return total + semester.rows.length
+  }, 0)
+}
+
   return (
-    <AppContext.Provider value={{ total, setTotal, semesters, setSemester, preview, setPreview, calculateCGPA }}>
+    <AppContext.Provider value={{ total, setTotal, semesters, setSemester, preview, setPreview, calculateCGPA, getTotalCourses }}>
       {children}
     </AppContext.Provider>
   );

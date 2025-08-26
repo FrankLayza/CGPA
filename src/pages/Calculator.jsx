@@ -163,7 +163,7 @@ const Calculator = () => {
       return 0;
     }
   };
-
+  
   // const calculateCGPA = () => {
   //   let totalGPA = 0;
   //   let count = 0;

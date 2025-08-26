@@ -2,7 +2,7 @@ import SemesterCharts from "../components/Chart";
 import { useAppContext } from "../contexts/AppContext";
 import { Link } from "react-router-dom";
 const Dashboard = () => {
-  const { preview, calculateCGPA } = useAppContext();
+  const { preview, calculateCGPA, getTotalCourses, semesters } = useAppContext();
   return (
     <>
       <div className="w-full min-h-screen p-8">
@@ -25,7 +25,7 @@ const Dashboard = () => {
                 <div>
                   <p className="text-7xl font-extrabold">{calculateCGPA()}</p>
                   <p className="text-3xl font-bold">/5.0</p>
-                  <p className="text-xl font-bold">33 TOTAL COURSES</p>
+                  <p className="text-xl font-bold">{getTotalCourses(semesters)} TOTAL COURSES</p>
                 </div>
                 <div className="">
                   <div className="neo-card bg-neo-yellow px-3.5 py-2 my-5">
