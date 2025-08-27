@@ -1,5 +1,7 @@
+import { UserRoundPen } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import { Link } from "react-router-dom";
+import { LogOut } from "lucide-react";
 const Navbar = () => {
   const { preview } = useAppContext();
   return (
@@ -10,24 +12,32 @@ const Navbar = () => {
         <Link to={"/home"} className="text-3xl font-bold">
           GPAlytics
         </Link>
-        <div className="avatar dropdown dropdown-bottom dropdown-hover size-9 cursor-pointer">
+        <div className="avatar dropdown dropdown-bottom size-9 cursor-pointer">
           <div
             tabIndex={0}
             className="ring-neutral ring-offset-base-100 rounded-full ring-2 ring-offset-2"
           >
             <img src={preview.img} alt="Profile Picture" />
           </div>
-          <ul
+          <div
             tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-1 w-20 p-2 shadow-sm"
+            className="dropdown-content menu bg-base-100 rounded-box z-1 w-fit px-2 py-1 -ml-10 mt-2 shadow-sm"
           >
-            <li>
-              <a>Profile</a>
-            </li>
-            <li>
-              <Link to={'/'}>Logout</Link>
-            </li>
-          </ul>
+            <ul>
+              <div className="flex items-center">
+                <UserRoundPen className="text-neo-red size-4" />
+                <li>
+                  <a>Profile</a>
+                </li>
+              </div>
+              <div className="flex items-center">
+                <LogOut className="size-4 text-neo-red" />
+                <li>
+                  <Link to={"/"}>Logout</Link>
+                </li>
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
